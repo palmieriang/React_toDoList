@@ -6,16 +6,27 @@ import './App.css'
 
 class Todo extends Component {
   constructor(props) {
-    super(props);
+    super(props)
+    this.state = {
+      tasks: props.tasks
+    }
+    this.updateList = this.updateList.bind(this)
+  }
 
+  updateList(text) {
+    var updateTasks = this.state.tasks
+    updateTasks.push(text)
+    this.setState({
+      tasks: updateTasks
+    })
   }
 
   render() {
     return (
       <div className="App">
         <h1>ToDo App</h1>
-        <AddNewTask />
-        <ToDoAppList tasks={this.props.tasks} />
+        <AddNewTask updateList={this.updateList} />
+        <ToDoAppList tasks={this.state.tasks} />
       </div>
     );
   }
