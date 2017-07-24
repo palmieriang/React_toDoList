@@ -11,6 +11,7 @@ class Todo extends Component {
       tasks: props.tasks
     }
     this.updateList = this.updateList.bind(this)
+    this.removeTask = this.removeTask.bind(this)
   }
 
   updateList(text) {
@@ -21,12 +22,20 @@ class Todo extends Component {
     })
   }
 
+  removeTask(text) {
+    var updateTasks = this.state.tasks
+    updateTasks.splice(updateTasks.indexOf(text), 1)
+    this.setState({
+      tasks: updateTasks
+    })
+  }
+
   render() {
     return (
       <div className="App">
         <h1>ToDo App</h1>
         <AddNewTask updateList={this.updateList} />
-        <ToDoAppList tasks={this.state.tasks} />
+        <ToDoAppList tasks={this.state.tasks} remove={this.removeTask} />
       </div>
     );
   }

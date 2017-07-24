@@ -3,7 +3,8 @@ import React, { Component } from 'react'
 class ToDoAppList extends  Component {
   constructor(props) {
     super(props)
-      console.log(props)
+    console.log(props)
+    this.remove = this.remove.bind(this)
   }
 
   remove(elem) {
