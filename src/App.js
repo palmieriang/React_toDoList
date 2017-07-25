@@ -15,19 +15,25 @@ class Todo extends Component {
   }
 
   updateList(text) {
-    var updateTasks = this.state.tasks
-    updateTasks.push(text)
+    var updatedTasks = this.state.tasks
+    updatedTasks.push(text)
     this.setState({
-      tasks: updateTasks
+      tasks: updatedTasks
     })
+    this.updateLocalStorage(updatedTasks)
   }
 
   removeTask(text) {
-    var updateTasks = this.state.tasks
-    updateTasks.splice(updateTasks.indexOf(text), 1)
+    var updatedTasks = this.state.tasks
+    updatedTasks.splice(updatedTasks.indexOf(text), 1)
     this.setState({
-      tasks: updateTasks
+      tasks: updatedTasks
     })
+    this.updateLocalStorage(updatedTasks)
+  }
+
+  updateLocalStorage(updatedTasks) {
+    localStorage.setItem('storedTasks', JSON.stringify(updatedTasks))
   }
 
   render() {
