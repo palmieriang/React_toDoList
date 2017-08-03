@@ -16,7 +16,7 @@ class Todo extends Component {
 
   updateList(text) {
     var updatedTasks = this.state.tasks
-    updatedTasks.push(text)
+    updatedTasks.unshift(text)
     this.setState({
       tasks: updatedTasks
     })
