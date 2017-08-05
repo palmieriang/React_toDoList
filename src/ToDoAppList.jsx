@@ -13,12 +13,15 @@ class ToDoAppList extends  Component {
   }
 
   render() {
-    var task = this.props.tasks.map((elem, i) => {
-      return <li key={i}><span>{elem}</span><button onClick={this.remove}>X</button></li>
-    })
+
+    const {tasks} = this.props
+
     return (
       <ul>
-        {task}
+        {tasks.map((elem, i) => (
+          <li key={i}><span>{elem}</span><button onClick={this.remove}>X</button></li>
+          )
+        )}
       </ul>
     )
   }
