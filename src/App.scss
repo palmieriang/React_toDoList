@@ -7,19 +7,39 @@
   height: 80px;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.header {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 500;
 }
 
-.App-intro {
-  font-size: large;
+.new-task {
+  text-align: center;
+  margin: 15px;
+
+  input {
+    width: 300px;
+  }
 }
 
-ul {
-  list-style-type: none;
+.container {
+  width: 600px;
+  margin: 10px auto;
+  background-color: beige;
+  border-radius: 5px;
+}
+
+table {
+  width: 100%;
+}
+
+th, td {
+  padding: 10px;
+}
+
+.number {
+  width: 50px;
+  text-align: center;
 }
 
 @keyframes App-logo-spin {

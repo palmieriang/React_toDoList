@@ -38,8 +38,8 @@ class Todo extends Component {
 
   render() {
     return (
-      <div className="App">
-        <h1>ToDo App</h1>
+      <div className='container'>
+        <h1 className='header'>To Do List</h1>
         <AddNewTask updateList={this.updateList} />
         <ToDoAppList tasks={this.state.tasks} remove={this.removeTask} />
       </div>

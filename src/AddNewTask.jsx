@@ -17,8 +17,8 @@ class AddNewTask extends Component {
 
   render() {
     return (
-      <form onSubmit={this.newTask}>
-        <input type="text"/>
+      <form className='new-task' onSubmit={this.newTask}>
+        <input type="text" placeholder='Add a task...' />
       </form>
     )
   }

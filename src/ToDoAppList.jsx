@@ -8,7 +8,9 @@ class ToDoAppList extends  Component {
   }
 
   remove(elem) {
-    var value = elem.target.parentNode.querySelector('span').innerText
+    // var arr = this.props.tasks
+    // arr.splice(elem, 1)
+    var value = elem.target.parentNode.querySelector('tr')
     this.props.remove(value)
   }
 
@@ -17,12 +19,25 @@ class ToDoAppList extends  Component {
     const {tasks} = this.props
 
     return (
-      <ul>
-        {tasks.map((elem, i) => (
-          <li key={i}><span>{elem}</span><button onClick={this.remove}>X</button></li>
-          )
-        )}
-      </ul>
+      <table className="table-bordered">
+        <tbody>
+          {tasks.map((elem, i) => (
+            <tr key={i}>
+              <td className="number"> { i + 1 } </td>
+              <td className="number">
+                <input type="checkbox" />
+              </td>
+              <td className="name">
+                <span className="done-{{oneTask.status}}"> { elem } </span>
+              </td>
+              <td className="number">
+                <span onClick={this.remove}>X</span>
+              </td>
+            </tr>
+            )
+          )}
+        </tbody>
+      </table>
     )
   }
 }
