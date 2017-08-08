@@ -5,6 +5,13 @@ class ToDoAppList extends  Component {
     super(props)
     console.log(props)
     this.remove = this.remove.bind(this)
+    this.modify = this.modify.bind(this)
+  }
+
+  modify(elem) {
+    // var arr = this.props.tasks
+    // arr.splice(elem, 1)
+    console.log('mod')
   }
 
   remove(elem) {
@@ -27,7 +34,7 @@ class ToDoAppList extends  Component {
               <td className="number">
                 <input type="checkbox" />
               </td>
-              <td className="name">
+              <td className="name" onClick={this.modify}>
                 <span className="done-{{oneTask.status}}"> { elem } </span>
               </td>
               <td className="number">
