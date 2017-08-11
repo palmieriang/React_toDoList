@@ -6,10 +6,10 @@ class DisplayItem extends Component {
 		this.state = {
 			done: false
 		}
-    this.handleOnChange = this.handleOnChange.bind(this)
+    this.handleDone = this.handleDone.bind(this)
 	}
 
-  handleOnChange() {
+  handleDone() {
     var _done = !this.state.done
     this.setState({
       done: _done
@@ -21,10 +21,10 @@ class DisplayItem extends Component {
 		const {elem, removeTask, i} = this.props
 
 		return (
-      <tr key={elem}>
+      <tr>
         <td className="number"> { i + 1 } </td>
         <td className="number">
-          <input type="checkbox" checked={this.state.done} onChange={this.handleOnChange} />
+          <input type="checkbox" checked={this.state.done} onChange={this.handleDone} />
         </td>
         <td className="name" onClick={this.modify}>
           <span> { elem } </span>

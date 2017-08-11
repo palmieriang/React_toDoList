@@ -54,6 +54,8 @@ class Todo extends Component {
     return (
       <div className='container'>
         <h1 className='header'>To Do List</h1>
+        <p>Number of total tasks: {this.state.tasks.length} </p>
+        <p>Number of total tasks done: {this.state.tasks.filter((elem) => {return elem.done}).length} </p>
         <AddNewTask updateList={this.updateList} />
         <DisplayList tasks={this.state.tasks} modify={this.modifyTask} removeTask={this.removeTask} />
       </div>
