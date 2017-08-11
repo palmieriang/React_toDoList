@@ -31,12 +31,19 @@ class Todo extends Component {
   }
 
   removeTask(text) {
+    // 1st way
     var updatedTasks = this.state.tasks
     updatedTasks.splice(updatedTasks.indexOf(text), 1)
+
+    // 2nd way
+    // var updatedTasks = this.state.tasks.filter((_elem) => {
+    //   return _elem !== text
+    // })
+
     this.setState({
       tasks: updatedTasks
     })
-    this.updateLocalStorage(updatedTasks)
+    // this.updateLocalStorage(updatedTasks)
   }
 
   updateLocalStorage(updatedTasks) {
@@ -48,7 +55,7 @@ class Todo extends Component {
       <div className='container'>
         <h1 className='header'>To Do List</h1>
         <AddNewTask updateList={this.updateList} />
-        <ToDoAppList tasks={this.state.tasks} modify={this.modifyTask} remove={this.removeTask} />
+        <ToDoAppList tasks={this.state.tasks} modify={this.modifyTask} removeTask={this.removeTask} />
       </div>
     );
   }
