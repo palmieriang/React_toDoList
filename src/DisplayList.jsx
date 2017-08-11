@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+import DisplayItem from './DisplayItem'
 
-class ToDoAppList extends  Component {
+class DisplayList extends Component {
   // constructor(props) {
   //   super(props)
   //   console.log(props)
@@ -23,28 +24,13 @@ class ToDoAppList extends  Component {
 
   render() {
 
-    console.log(this.props)
-
     const {tasks, removeTask} = this.props
-
-    console.log(tasks)
 
     return (
       <table className="table-bordered">
         <tbody>
           {tasks.map((elem, i) => (
-            <tr key={elem}>
-              <td className="number"> { i + 1 } </td>
-              <td className="number">
-                <input type="checkbox" />
-              </td>
-              <td className="name" onClick={this.modify}>
-                <span> { elem } </span>
-              </td>
-              <td className="number">
-                <span onClick={ removeTask.bind(this, elem) }>X</span>
-              </td>
-            </tr>
+            <DisplayItem elem={elem} i={i} key={elem} removeTask={removeTask.bind(null, elem)} />
             )
           )}
         </tbody>
@@ -53,4 +39,4 @@ class ToDoAppList extends  Component {
   }
 }
 
-export default ToDoAppList
+export default DisplayList
