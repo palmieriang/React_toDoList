@@ -4,7 +4,11 @@ import './index.css'
 import Todo from './App'
 import registerServiceWorker from './registerServiceWorker'
 
-var tasksList = ["Task 1", "Task 2", "Task 3"]
+var tasksList = [
+  {title: "Task 1", done: false},
+  {title: "Task 2", done: false},
+  {title: "Task 3", done: false}
+]
 
 var tasks = localStorage.getItem('storedTasks')
 

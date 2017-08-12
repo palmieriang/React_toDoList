@@ -8,7 +8,8 @@ class Todo extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      tasks: props.tasks
+      tasks: props.tasks,
+      done: false
     }
     this.updateList = this.updateList.bind(this)
     this.removeTask = this.removeTask.bind(this)
@@ -18,7 +19,8 @@ class Todo extends Component {
     var updatedTasks = this.state.tasks
     updatedTasks.unshift(text)
     this.setState({
-      tasks: updatedTasks
+      tasks: updatedTasks,
+      done: false
     })
     this.updateLocalStorage(updatedTasks)
   }
@@ -51,6 +53,7 @@ class Todo extends Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <div className='container'>
         <h1 className='header'>To Do List</h1>
