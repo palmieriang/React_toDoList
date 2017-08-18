@@ -17,20 +17,19 @@ class DisplayItem extends Component {
   }
 
 	render() {
-
-		const {elem, removeTask, i} = this.props
+		const {task, removeTask, index} = this.props
 
 		return (
       <tr>
-        <td className="number"> { i + 1 } </td>
+        <td className="number"> { index + 1 } </td>
         <td className="number">
           <input type="checkbox" checked={this.state.done} onChange={this.handleDone} />
         </td>
         <td className="name" onClick={this.modify}>
-          <span> { elem } </span>
+          <span> { task.title } </span>
         </td>
         <td className="number">
-          <span onClick={ removeTask.bind(this, elem) }>X</span>
+          <span onClick={ removeTask.bind(this, task) }>X</span>
         </td>
       </tr>
 		)

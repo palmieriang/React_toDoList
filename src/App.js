@@ -1,26 +1,42 @@
 import React, { Component } from 'react'
-import DisplayList from './DisplayList'
+import DisplayItem from './DisplayItem'
 import AddNewTask from './AddNewTask'
 
 import './App.css'
 
+var tasksList = [
+  {title: 'Task 11', done: false},
+  {title: 'Task 2', done: false},
+  {title: 'Task 3', done: false}
+]
+
 class Todo extends Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
+
     this.state = {
-      tasks: props.tasks,
-      done: false
+      tasks: tasksList
     }
+
     this.updateList = this.updateList.bind(this)
     this.removeTask = this.removeTask.bind(this)
+  }
+
+  componentDidMount() {
+    const storedTasks = localStorage.getItem('storedTasks')
+
+    if (storedTasks) {
+      this.setState({
+        tasks: JSON.parse(storedTasks)
+      })
+    }
   }
 
   updateList(text) {
     var updatedTasks = this.state.tasks
     updatedTasks.unshift(text)
     this.setState({
-      tasks: updatedTasks,
-      done: false
+      tasks: updatedTasks
     })
     this.updateLocalStorage(updatedTasks)
   }
@@ -53,14 +69,21 @@ class Todo extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div className='container'>
         <h1 className='header'>To Do List</h1>
         <p>Number of total tasks: {this.state.tasks.length} </p>
-        <p>Number of total tasks done: {this.state.tasks.filter((elem) => {return elem.done}).length} </p>
+        <p>Number of total tasks done: {this.state.tasks.filter((elem) => elem.done).length} </p>
         <AddNewTask updateList={this.updateList} />
-        <DisplayList tasks={this.state.tasks} modify={this.modifyTask} removeTask={this.removeTask} />
+
+        <table className="table-bordered">
+          <tbody>
+            {this.state.tasks.map((task, index) => (
+              <DisplayItem task={task} index={index} key={index} removeTask={this.removeTask.bind(null, task)} />
+              )
+            )}
+          </tbody>
+        </table>
       </div>
     );
   }
