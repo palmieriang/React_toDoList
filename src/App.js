@@ -48,20 +48,18 @@ class Todo extends Component {
     this.updateLocalStorage(text)
   }
 
-  removeTask(text) {
+  removeTask(task) {
     // 1st way
     // var updatedTasks = this.state.tasks
     // updatedTasks.splice(updatedTasks.indexOf(text), 1)
 
     // 2nd way
-    var updatedTasks = this.state.tasks.filter((_elem) => {
-      return _elem !== text
-    })
+    var updatedTasks = this.state.tasks.filter((_elem) =>  _elem !== task)
 
     this.setState({
       tasks: updatedTasks
     })
-    this.updateLocalStorage(updatedTasks)
+    // this.updateLocalStorage(updatedTasks)
   }
 
   updateLocalStorage(updatedTasks) {
