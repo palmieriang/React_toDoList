@@ -20,6 +20,7 @@ class Todo extends Component {
 
     this.updateList = this.updateList.bind(this)
     this.removeTask = this.removeTask.bind(this)
+    this.addTask = this.addTask.bind(this)
   }
 
   componentDidMount() {
@@ -32,20 +33,28 @@ class Todo extends Component {
     }
   }
 
+  addTask(newTodo) {
+    this.setState({
+      tasks: [
+        {title: newTodo, done: false},
+        ...this.state.tasks]
+    })
+  }
+
   updateList(text) {
     var updatedTasks = this.state.tasks
     updatedTasks.unshift(text)
     this.setState({
       tasks: updatedTasks
     })
-    this.updateLocalStorage(updatedTasks)
+    // this.updateLocalStorage(updatedTasks)
   }
 
   modifyTask(text) {
     this.setState({
       tasks: text
     })
-    this.updateLocalStorage(text)
+    // this.updateLocalStorage(text)
   }
 
   removeTask(task) {
@@ -62,22 +71,29 @@ class Todo extends Component {
     // this.updateLocalStorage(updatedTasks)
   }
 
-  updateLocalStorage(updatedTasks) {
-    localStorage.setItem('storedTasks', JSON.stringify(updatedTasks))
-  }
+  // updateLocalStorage(updatedTasks) {
+  //   localStorage.setItem('storedTasks', JSON.stringify(updatedTasks))
+  // }
 
   render() {
     return (
       <div className='container'>
         <h1 className='header'>To Do List</h1>
-        <p>Number of total tasks: {this.state.tasks.length} </p>
-        <p>Number of total tasks done: {this.state.tasks.filter((elem) => elem.done).length} </p>
-        <AddNewTask updateList={this.updateList} />
+        {
+        // <p>Number of total tasks: {this.state.tasks.length} </p>
+        // <p>Number of total tasks done: {this.state.tasks.filter((elem) => elem.done).length} </p>
+        }
+        <AddNewTask updateList={this.updateList} addTask={this.addTask} />
 
         <table className="table-bordered">
           <tbody>
             {this.state.tasks.map((task, index) => (
-              <DisplayItem task={task} index={index} key={index} removeTask={this.removeTask.bind(null, task)} />
+              <DisplayItem
+                task={task}
+                index={index}
+                key={index}
+                removeTask={this.removeTask.bind(null, task)}
+                />
               )
             )}
           </tbody>

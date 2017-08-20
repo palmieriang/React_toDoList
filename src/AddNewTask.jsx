@@ -1,24 +1,33 @@
 import React, { Component } from 'react'
 
 class AddNewTask extends Component {
-  constructor(props) {
-    super(props)
-    this.newTask = this.newTask.bind(this)
+  constructor() {
+    super()
+    this.state = {
+      value: ''
+    }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  newTask(event) {
+  handleChange(event) {
+    this.setState({
+      value: event.target.value
+    })
+  }
+
+  handleSubmit(event) {
     event.preventDefault()
-    var input = event.target.querySelector('input')
-    var value = input.value
-    input.value = ''
-    this.props.updateList(value)
-    console.log(value)
+    this.props.addTask(this.state.value)
+    this.setState({
+      value: ''
+    })
   }
 
   render() {
     return (
-      <form className='new-task' onSubmit={this.newTask}>
-        <input type='text' placeholder='Add a task...' />
+      <form className='new-task' onSubmit={(event) => this.handleSubmit(event)}>
+        <input type='text' placeholder='Add a task...' value={this.state.value} onChange={this.handleChange} />
       </form>
     )
   }
