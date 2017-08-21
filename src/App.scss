@@ -42,6 +42,12 @@ th, td {
   text-align: center;
 }
 
+.done {
+  color: grey;
+  font-style: italic;
+  text-decoration: line-through;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

@@ -32,6 +32,11 @@ th, td {
   width: 50px;
   text-align: center; }
 
+.done {
+  color: grey;
+  font-style: italic;
+  text-decoration: line-through; }
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg); }

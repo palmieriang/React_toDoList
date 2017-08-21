@@ -25,7 +25,7 @@ class DisplayItem extends Component {
         <td className="number">
           <input type="checkbox" checked={this.state.done} onChange={this.handleDone} />
         </td>
-        <td className="name" onClick={this.modify}>
+        <td className={"name " + (this.state.done ? 'done' : '')} onClick={this.modify}>
           <span> { task.title } </span>
         </td>
         <td className="number">
