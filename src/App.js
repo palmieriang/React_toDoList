@@ -7,9 +7,9 @@ import './App.css'
 const uuidv4 = require('uuid/v4')
 
 var tasksList = [
-  {title: 'Task 11', done: false, id: uuidv4()},
-  {title: 'Task 2', done: false, id: uuidv4()},
-  {title: 'Task 3', done: false, id: uuidv4()}
+  {title: 'Task 11', done: false, editing: false, id: uuidv4()},
+  {title: 'Task 2', done: false, editing: false, id: uuidv4()},
+  {title: 'Task 3', done: false, editing: false, id: uuidv4()}
 ]
 
 class Todo extends Component {

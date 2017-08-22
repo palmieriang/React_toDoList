@@ -4,9 +4,11 @@ class DisplayItem extends Component {
 	constructor() {
 		super()
 		this.state = {
-			done: false
+			done: false,
+      editing: false
 		}
     this.handleDone = this.handleDone.bind(this)
+    this.handleModify = this.handleModify.bind(this)
 	}
 
   handleDone() {
@@ -16,10 +18,16 @@ class DisplayItem extends Component {
     })
   }
 
+  handleModify() {
+    var _editing = !this.state.editing
+    this.setState({
+      editing: _editing
+    })
+  }
+
 	render() {
 
-    console.log(this.props)
-		const {task, modifyTask, removeTask, index} = this.props
+		const {task, removeTask, index} = this.props
 
 		return (
       <tr>
@@ -27,8 +35,9 @@ class DisplayItem extends Component {
         <td className="number">
           <input type="checkbox" checked={this.state.done} onChange={this.handleDone} />
         </td>
-        <td className={"name " + (this.state.done ? 'done' : '')} onClick={ modifyTask.bind(this, task) }>
-          <span> { task.title } </span>
+        <td className={"name " + (this.state.done ? 'done' : '')} onClick={this.handleModify}>
+          {!this.state.editing && <span> { task.title } </span>}
+          {this.state.editing && <span> { task.title } </span>}          
         </td>
         <td className="number">
           <span onClick={ removeTask.bind(this, task) }>X</span>
