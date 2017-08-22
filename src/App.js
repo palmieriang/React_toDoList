@@ -4,10 +4,12 @@ import AddNewTask from './AddNewTask'
 
 import './App.css'
 
+const uuidv4 = require('uuid/v4')
+
 var tasksList = [
-  {title: 'Task 11', done: false},
-  {title: 'Task 2', done: false},
-  {title: 'Task 3', done: false}
+  {title: 'Task 11', done: false, id: uuidv4()},
+  {title: 'Task 2', done: false, id: uuidv4()},
+  {title: 'Task 3', done: false, id: uuidv4()}
 ]
 
 class Todo extends Component {
@@ -36,7 +38,7 @@ class Todo extends Component {
   addTask(newTodo) {
     this.setState({
       tasks: [
-        {title: newTodo, done: false},
+        {title: newTodo, done: false, id: uuidv4()},
         ...this.state.tasks]
     })
   }
@@ -51,9 +53,10 @@ class Todo extends Component {
   }
 
   modifyTask(text) {
-    this.setState({
-      tasks: text
-    })
+    console.log(text.title)
+    // this.setState({
+    //   tasks: text
+    // })
     // this.updateLocalStorage(text)
   }
 
@@ -91,8 +94,9 @@ class Todo extends Component {
               <DisplayItem
                 task={task}
                 index={index}
-                key={index}
+                key={task.id}
                 removeTask={this.removeTask.bind(null, task)}
+                modifyTask={this.modifyTask.bind(null, task)}
                 />
               )
             )}

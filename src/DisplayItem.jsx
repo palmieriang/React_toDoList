@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 
 class DisplayItem extends Component {
-	constructor(props) {
-		super(props);
+	constructor() {
+		super()
 		this.state = {
 			done: false
 		}
@@ -17,7 +17,9 @@ class DisplayItem extends Component {
   }
 
 	render() {
-		const {task, removeTask, index} = this.props
+
+    console.log(this.props)
+		const {task, modifyTask, removeTask, index} = this.props
 
 		return (
       <tr>
@@ -25,7 +27,7 @@ class DisplayItem extends Component {
         <td className="number">
           <input type="checkbox" checked={this.state.done} onChange={this.handleDone} />
         </td>
-        <td className={"name " + (this.state.done ? 'done' : '')} onClick={this.modify}>
+        <td className={"name " + (this.state.done ? 'done' : '')} onClick={ modifyTask.bind(this, task) }>
           <span> { task.title } </span>
         </td>
         <td className="number">
