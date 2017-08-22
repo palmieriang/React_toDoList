@@ -25,6 +25,12 @@ class DisplayItem extends Component {
     })
   }
 
+  handleChange(event) {
+    this.setState({
+      value: event.target.value
+    })
+  }
+
 	render() {
 
 		const {task, removeTask, index} = this.props
@@ -37,7 +43,7 @@ class DisplayItem extends Component {
         </td>
         <td className={"name " + (this.state.done ? 'done' : '')} onClick={this.handleModify}>
           {!this.state.editing && <span> { task.title } </span>}
-          {this.state.editing && <span> { task.title } </span>}          
+          {this.state.editing && <input type='text' value={ task.title } onChange={this.handleChange} />}          
         </td>
         <td className="number">
           <span onClick={ removeTask.bind(this, task) }>X</span>
