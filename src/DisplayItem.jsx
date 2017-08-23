@@ -4,6 +4,7 @@ class DisplayItem extends Component {
 	constructor() {
 		super()
 		this.state = {
+      value: task.title,
 			done: false,
       editing: false
     }
@@ -41,8 +42,8 @@ class DisplayItem extends Component {
         <td className="number">
           <input type="checkbox" checked={this.state.done} onChange={this.handleDone} />
         </td>
-        <td className={"name " + (this.state.done ? 'done' : '')} onClick={this.handleModify}>
-          {!this.state.editing && <span> { task.title } </span>}
+        <td className={"name " + (this.state.done ? 'done' : '')}>
+          {!this.state.editing && <span onClick={this.handleModify}> { task.title } </span>}
           {this.state.editing && <input type='text' value={ task.title } onChange={this.handleChange} onSubmit={this.props.updateList} />}          
         </td>
         <td className="number">
