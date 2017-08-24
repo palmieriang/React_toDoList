@@ -53,7 +53,7 @@ class Todo extends Component {
   }
 
   modifyTask(text) {
-    console.log(text.title)
+    console.log(text)
     // this.setState({
     //   tasks: text
     // })

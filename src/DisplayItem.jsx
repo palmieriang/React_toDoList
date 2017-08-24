@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
 
 class DisplayItem extends Component {
-	constructor() {
-		super()
+	constructor(props) {
+		super(props)
 		this.state = {
-      value: task.title,
+      value: this.props.task.title,
 			done: false,
       editing: false
     }
     this.handleDone = this.handleDone.bind(this)
     this.handleModify = this.handleModify.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
 	}
 
   handleDone() {
@@ -21,6 +23,9 @@ class DisplayItem extends Component {
 
   handleModify() {
     var _editing = !this.state.editing
+    this.state = {
+      value: this.props.task.title
+    }
     this.setState({
       editing: _editing
     })
@@ -29,6 +34,14 @@ class DisplayItem extends Component {
   handleChange(event) {
     this.setState({
       value: event.target.value
+    })
+  }
+
+  handleSubmit(event) {
+    event.preventDefault()
+    this.props.modifyTask(this.state.value)
+    this.setState({
+      editing: false
     })
   }
 
@@ -44,7 +57,7 @@ class DisplayItem extends Component {
         </td>
         <td className={"name " + (this.state.done ? 'done' : '')}>
           {!this.state.editing && <span onClick={this.handleModify}> { task.title } </span>}
-          {this.state.editing && <input type='text' value={ task.title } onChange={this.handleChange} onSubmit={this.props.updateList} />}          
+          {this.state.editing && <form onSubmit={(event) => this.handleSubmit(event)}><input type='text' value={this.state.value} onChange={this.handleChange} /></form>}          
         </td>
         <td className="number">
           <span onClick={ removeTask.bind(this, task) }>X</span>
