@@ -23,6 +23,7 @@ class Todo extends Component {
     this.updateList = this.updateList.bind(this)
     this.removeTask = this.removeTask.bind(this)
     this.addTask = this.addTask.bind(this)
+    this.modifyTask = this.modifyTask.bind(this)
   }
 
   componentDidMount() {
@@ -95,8 +96,8 @@ class Todo extends Component {
                 task={task}
                 index={index}
                 key={task.id}
-                removeTask={this.removeTask.bind(null, task)}
-                modifyTask={this.modifyTask.bind(null, task)}
+                removeTask={this.removeTask}
+                modifyTask={this.modifyTask}
                 updateList={this.updateList}
                 />
               )
