@@ -1,10 +1,6 @@
 .App {
   text-align: center; }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px; }
-
 .header {
   text-align: center;
   font-size: 36px;
@@ -15,6 +11,14 @@
   margin: 15px; }
   .new-task input {
     width: 300px; }
+
+.buttons-row {
+  display: flex;
+  justify-content: center;
+  margin: 10px; }
+  .buttons-row button {
+    margin: 10px;
+    padding: 5px 10px; }
 
 .container {
   width: 600px;

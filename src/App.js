@@ -24,6 +24,8 @@ class Todo extends Component {
     this.removeTask = this.removeTask.bind(this)
     this.addTask = this.addTask.bind(this)
     this.modifyTask = this.modifyTask.bind(this)
+    this.removeAllTasks = this.removeAllTasks.bind(this)
+    this.removeCompletedTasks = this.removeCompletedTasks.bind(this)
   }
 
   componentDidMount() {
@@ -83,6 +85,17 @@ class Todo extends Component {
     // this.updateLocalStorage(updatedTasks)
   }
 
+  removeAllTasks() {
+    this.setState({
+      tasks: []
+    })    
+    // this.updateLocalStorage(updatedTasks)
+  }
+
+  removeCompletedTasks() {
+
+  }
+
   // updateLocalStorage(updatedTasks) {
   //   localStorage.setItem('storedTasks', JSON.stringify(updatedTasks))
   // }
@@ -97,6 +110,11 @@ class Todo extends Component {
         }
         <AddNewTask updateList={this.updateList} addTask={this.addTask} />
 
+        <div className='buttons-row'>
+          <button className='btn btn-success btn-xs' onClick={this.removeCompletedTasks}>Remove Completed</button>            
+          <button className='btn btn-danger btn-xs' onClick={this.removeAllTasks}>Remove All</button>
+        </div>
+
         <table className="table-bordered">
           <tbody>
             {this.state.tasks.map((task, index) => (
@@ -106,7 +124,6 @@ class Todo extends Component {
                 key={task.id}
                 removeTask={this.removeTask}
                 modifyTask={this.modifyTask}
-                updateList={this.updateList}
                 />
               )
             )}
