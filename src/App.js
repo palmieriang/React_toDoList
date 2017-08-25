@@ -45,7 +45,7 @@ class Todo extends Component {
   }
 
   updateList(text) {
-    var updatedTasks = this.state.tasks
+    const updatedTasks = this.state.tasks
     updatedTasks.unshift(text)
     this.setState({
       tasks: updatedTasks
@@ -53,11 +53,19 @@ class Todo extends Component {
     // this.updateLocalStorage(updatedTasks)
   }
 
-  modifyTask(text) {
-    console.log(text)
-    // this.setState({
-    //   tasks: text
-    // })
+  modifyTask(text, id) {
+    const updatedTasks = this.state.tasks.map(task => {
+      if(task.id === id) {
+        return {
+          ...task,
+          title: text
+        }
+      }
+      return task
+    })
+    this.setState({
+      tasks: updatedTasks
+    })
     // this.updateLocalStorage(text)
   }
 
@@ -67,7 +75,7 @@ class Todo extends Component {
     // updatedTasks.splice(updatedTasks.indexOf(text), 1)
 
     // 2nd way
-    var updatedTasks = this.state.tasks.filter((_elem) =>  _elem !== task)
+    const updatedTasks = this.state.tasks.filter((_elem) =>  _elem !== task)
 
     this.setState({
       tasks: updatedTasks
@@ -104,6 +112,7 @@ class Todo extends Component {
             )}
           </tbody>
         </table>
+        <br />
       </div>
     );
   }

@@ -37,9 +37,9 @@ class DisplayItem extends Component {
     })
   }
 
-  handleSubmit(event) {
+  handleSubmit(event, id) {
     event.preventDefault()
-    this.props.modifyTask(this.state.value)
+    this.props.modifyTask(this.state.value, id)
     this.setState({
       editing: false
     })
@@ -57,7 +57,7 @@ class DisplayItem extends Component {
         </td>
         <td className={"name " + (this.state.done ? 'done' : '')}>
           {!this.state.editing && <span onClick={this.handleModify}> { task.title } </span>}
-          {this.state.editing && <form onSubmit={(event) => this.handleSubmit(event)}><input type='text' value={this.state.value} onChange={this.handleChange} /></form>}          
+          {this.state.editing && <form onSubmit={(event, id) => this.handleSubmit(event, task.id)}><input type='text' value={this.state.value} onChange={this.handleChange} /></form>}          
         </td>
         <td className="number">
           <span onClick={ removeTask.bind(this, task) }>X</span>
