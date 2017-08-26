@@ -24,6 +24,7 @@ class Todo extends Component {
     this.removeTask = this.removeTask.bind(this)
     this.addTask = this.addTask.bind(this)
     this.modifyTask = this.modifyTask.bind(this)
+    this.doneTask = this.doneTask.bind(this)
     this.removeAllTasks = this.removeAllTasks.bind(this)
     this.removeCompletedTasks = this.removeCompletedTasks.bind(this)
   }
@@ -53,6 +54,22 @@ class Todo extends Component {
       tasks: updatedTasks
     })
     // this.updateLocalStorage(updatedTasks)
+  }
+
+  doneTask(done, id) {
+    const updatedTasks = this.state.tasks.map(task => {
+      if(task.id === id) {
+        return {
+          ...task,
+          done: done
+        }
+      }
+      return task
+    })
+    this.setState({
+      tasks: updatedTasks
+    })
+    // this.updateLocalStorage(text)
   }
 
   modifyTask(text, id) {
@@ -88,7 +105,7 @@ class Todo extends Component {
   removeAllTasks() {
     this.setState({
       tasks: []
-    })    
+    })
     // this.updateLocalStorage(updatedTasks)
   }
 
@@ -101,6 +118,7 @@ class Todo extends Component {
   // }
 
   render() {
+    console.log(this.state.tasks)
     return (
       <div className='container'>
         <h1 className='header'>To Do List</h1>
@@ -111,7 +129,7 @@ class Todo extends Component {
         <AddNewTask updateList={this.updateList} addTask={this.addTask} />
 
         <div className='buttons-row'>
-          <button className='btn btn-success btn-xs' onClick={this.removeCompletedTasks}>Remove Completed</button>            
+          <button className='btn btn-success btn-xs' onClick={this.removeCompletedTasks}>Remove Completed</button>
           <button className='btn btn-danger btn-xs' onClick={this.removeAllTasks}>Remove All</button>
         </div>
 
@@ -124,6 +142,7 @@ class Todo extends Component {
                 key={task.id}
                 removeTask={this.removeTask}
                 modifyTask={this.modifyTask}
+                doneTask={this.doneTask}
                 />
               )
             )}
