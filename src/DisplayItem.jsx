@@ -16,17 +16,10 @@ class DisplayItem extends Component {
 
   handleDone(event, id) {
     var _done = !this.state.done
-    console.log(_done)
     this.state = {
       done: _done
     }
-    console.log(_done)
     this.props.doneTask(this.state.done, id)
-
-    // this.props.modifyTask(id)
-    // this.setState({
-    //   done: _done
-    // })
   }
 
   handleModify() {
