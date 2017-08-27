@@ -126,10 +126,12 @@ class Todo extends Component {
     return (
       <div className='container'>
         <h1 className='header'>To Do List</h1>
-        {
-        // <p>Number of total tasks: {this.state.tasks.length} </p>
-        // <p>Number of total tasks done: {this.state.tasks.filter((elem) => elem.done).length} </p>
-        }
+
+        <div className='tasks-counter'>
+          <p>Number of total tasks: {this.state.tasks.length} </p>
+          <p>Number of total tasks done: {this.state.tasks.filter((elem) => elem.done).length} </p>
+        </div>
+
         <AddNewTask updateList={this.updateList} addTask={this.addTask} />
 
         <div className='buttons-row'>
