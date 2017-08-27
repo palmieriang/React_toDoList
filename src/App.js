@@ -110,7 +110,11 @@ class Todo extends Component {
   }
 
   removeCompletedTasks() {
-
+    const updatedTasks = this.state.tasks.filter((_elem) =>  _elem.done !== true)
+    this.setState({
+      tasks: updatedTasks
+    })
+    // this.updateLocalStorage(updatedTasks)
   }
 
   // updateLocalStorage(updatedTasks) {
