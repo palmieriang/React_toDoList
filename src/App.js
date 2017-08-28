@@ -146,9 +146,9 @@ class Todo extends Component {
                 task={task}
                 index={index}
                 key={task.id}
-                removeTask={this.removeTask}
-                modifyTask={this.modifyTask}
                 doneTask={this.doneTask}
+                modifyTask={this.modifyTask}
+                removeTask={this.removeTask}
                 />
               )
             )}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 class AddNewTask extends Component {
   constructor() {
@@ -31,6 +32,11 @@ class AddNewTask extends Component {
       </form>
     )
   }
+}
+
+AddNewTask.propTypes = {
+  updateList: React.PropTypes.func.isRequired,
+  addTask: React.PropTypes.func.isRequired
 }
 
 export default AddNewTask

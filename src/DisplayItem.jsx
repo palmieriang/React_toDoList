@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+// import PropTypes from 'prop-types'
 
 class DisplayItem extends Component {
 	constructor(props) {
@@ -66,6 +67,13 @@ class DisplayItem extends Component {
       </tr>
 		)
 	}
+}
+
+DisplayItem.propTypes = {
+  task: React.PropTypes.object.isRequired,
+  doneTask: React.PropTypes.func.isRequired,
+  modifyTask: React.PropTypes.func.isRequired,
+  removeTask: React.PropTypes.func.isRequired
 }
 
 export default DisplayItem
