@@ -53,7 +53,7 @@ class Todo extends Component {
     this.setState({
       tasks: updatedTasks
     })
-    // this.updateLocalStorage(updatedTasks)
+    this.updateLocalStorage(updatedTasks)
   }
 
   doneTask(done, id) {
@@ -69,7 +69,7 @@ class Todo extends Component {
     this.setState({
       tasks: updatedTasks
     })
-    // this.updateLocalStorage(text)
+    this.updateLocalStorage(updatedTasks)
   }
 
   modifyTask(text, id) {
@@ -85,7 +85,7 @@ class Todo extends Component {
     this.setState({
       tasks: updatedTasks
     })
-    // this.updateLocalStorage(text)
+    this.updateLocalStorage(updatedTasks)
   }
 
   removeTask(task) {
@@ -99,14 +99,15 @@ class Todo extends Component {
     this.setState({
       tasks: updatedTasks
     })
-    // this.updateLocalStorage(updatedTasks)
+    this.updateLocalStorage(updatedTasks)
   }
 
   removeAllTasks() {
+    const updatedTasks = []
     this.setState({
-      tasks: []
+      tasks: updatedTasks
     })
-    // this.updateLocalStorage(updatedTasks)
+    this.updateLocalStorage(updatedTasks)
   }
 
   removeCompletedTasks() {
@@ -114,15 +115,14 @@ class Todo extends Component {
     this.setState({
       tasks: updatedTasks
     })
-    // this.updateLocalStorage(updatedTasks)
+    this.updateLocalStorage(updatedTasks)
   }
 
-  // updateLocalStorage(updatedTasks) {
-  //   localStorage.setItem('storedTasks', JSON.stringify(updatedTasks))
-  // }
+  updateLocalStorage(updatedTasks) {
+    localStorage.setItem('storedTasks', JSON.stringify(updatedTasks))
+  }
 
   render() {
-    console.log(this.state.tasks)
     return (
       <div className='container'>
         <h1 className='header'>To Do List</h1>
