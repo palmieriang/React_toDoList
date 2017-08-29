@@ -70,10 +70,10 @@ class DisplayItem extends Component {
 }
 
 DisplayItem.propTypes = {
-  task: React.PropTypes.object.isRequired,
-  doneTask: React.PropTypes.func.isRequired,
-  modifyTask: React.PropTypes.func.isRequired,
-  removeTask: React.PropTypes.func.isRequired
+  task: PropTypes.object.isRequired,
+  doneTask: PropTypes.func.isRequired,
+  modifyTask: PropTypes.func.isRequired,
+  removeTask: PropTypes.func.isRequired
 }
 
 export default DisplayItem

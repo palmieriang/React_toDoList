@@ -35,8 +35,8 @@ class AddNewTask extends Component {
 }
 
 AddNewTask.propTypes = {
-  updateList: React.PropTypes.func.isRequired,
-  addTask: React.PropTypes.func.isRequired
+  updateList: PropTypes.func.isRequired,
+  addTask: PropTypes.func.isRequired
 }
 
 export default AddNewTask
