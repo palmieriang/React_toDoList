@@ -27,15 +27,14 @@ class AddNewTask extends Component {
 
   render() {
     return (
-      <form className='new-task' onSubmit={(event) => this.handleSubmit(event)}>
-        <input type='text' placeholder='Add a task...' value={this.state.value} onChange={this.handleChange} />
+      <form className="new-task" onSubmit={this.handleSubmit}>
+        <input type="text" placeholder="Add a task..." value={this.state.value} onChange={this.handleChange} />
       </form>
     )
   }
 }
 
 AddNewTask.propTypes = {
-  updateList: PropTypes.func.isRequired,
   addTask: PropTypes.func.isRequired
 }
 

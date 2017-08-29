@@ -42,9 +42,6 @@ class DisplayItem extends Component {
   }
 
   render() {
-
-    console.log(this.props)
-
     const {task, removeTask, index} = this.props
 
 		return (
@@ -53,9 +50,9 @@ class DisplayItem extends Component {
         <td className="number">
           <input type="checkbox" checked={task.done} onChange={(event, id) => this.handleDone(event, task.id)} />
         </td>
-        <td className={"name " + (task.done ? 'done' : '')}>
+        <td className={"name " + (task.done ? "done" : "")}>
           {!this.state.editing && <span onClick={this.handleModify}> { task.title } </span>}
-          {this.state.editing && <form onSubmit={(event, id) => this.handleSubmit(event, task.id)}><input type='text' value={this.state.value} onChange={this.handleChange} /></form>}
+          {this.state.editing && <form onSubmit={(event, id) => this.handleSubmit(event, task.id)}><input type="text" value={this.state.value} onChange={this.handleChange} /></form>}
         </td>
         <td className="number">
           <span onClick={ removeTask.bind(this, task) }>X</span>
