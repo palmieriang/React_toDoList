@@ -11,16 +11,15 @@ class Todo extends Component {
 
     this.state = {
       tasks: [
-        {title: 'Task 1', done: false, editing: false, id: uuidv4()},
-        {title: 'Task 2', done: false, editing: false, id: uuidv4()},
-        {title: 'Task 3', done: false, editing: false, id: uuidv4()}
+        {title: 'Task 1', done: false, id: uuidv4()},
+        {title: 'Task 2', done: false, id: uuidv4()},
+        {title: 'Task 3', done: false, id: uuidv4()}
       ]
     }
 
     this.removeTask = this.removeTask.bind(this)
     this.addTask = this.addTask.bind(this)
-    this.modifyTask = this.modifyTask.bind(this)
-    this.doneTask = this.doneTask.bind(this)
+    this.updateTask = this.updateTask.bind(this)
     this.removeAllTasks = this.removeAllTasks.bind(this)
     this.removeCompletedTasks = this.removeCompletedTasks.bind(this)
   }
@@ -39,54 +38,27 @@ class Todo extends Component {
     this.setState({
       tasks: [
         {title: newTodo, done: false, id: uuidv4()},
-        ...this.state.tasks]
+        ...this.state.tasks
+      ]
     })
   }
 
-  doneTask(done, id) {
-    const updatedTasks = this.state.tasks.map(task => {
-      if(task.id === id) {
-        return {
-          ...task,
-          done: done
-        }
+  updateTask(updatedTask) {
+    const tasks = this.state.tasks.map(task => {
+      if(task.id === updatedTask.id) {
+        return updatedTask
       }
       return task
     })
-    this.setState({
-      tasks: updatedTasks
-    })
-    this.updateLocalStorage(updatedTasks)
+    this.setState({tasks})
+    this.updateLocalStorage(tasks)
   }
 
-  modifyTask(text, id) {
-    const updatedTasks = this.state.tasks.map(task => {
-      if(task.id === id) {
-        return {
-          ...task,
-          title: text
-        }
-      }
-      return task
-    })
-    this.setState({
-      tasks: updatedTasks
-    })
-    this.updateLocalStorage(updatedTasks)
-  }
+  removeTask(id) {
+    const tasks = this.state.tasks.filter((task) =>  task.id !== id)
 
-  removeTask(task) {
-    // 1st way
-    // var updatedTasks = this.state.tasks
-    // updatedTasks.splice(updatedTasks.indexOf(text), 1)
-
-    // 2nd way
-    const updatedTasks = this.state.tasks.filter((_elem) =>  _elem !== task)
-
-    this.setState({
-      tasks: updatedTasks
-    })
-    this.updateLocalStorage(updatedTasks)
+    this.setState({tasks})
+    this.updateLocalStorage(tasks)
   }
 
   removeAllTasks() {
@@ -110,6 +82,7 @@ class Todo extends Component {
   }
 
   render() {
+
     return (
       <div className="container">
         <h1 className="header">To Do List</h1>
@@ -133,13 +106,18 @@ class Todo extends Component {
                 task={task}
                 index={index}
                 key={task.id}
-                doneTask={this.doneTask}
-                modifyTask={this.modifyTask}
+                updateTask={this.updateTask}
                 removeTask={this.removeTask}
                 />
               )
             )}
           </tbody>
+          <tfoot>
+            <tr>
+              <td colSpan="2"><p>Number of total tasks: {this.state.tasks.length} </p></td>
+              <td colSpan="2"><p>Number of total tasks done: {this.state.tasks.filter((elem) => elem.done).length} </p></td>
+            </tr>
+          </tfoot>
         </table>
         <br />
       </div>

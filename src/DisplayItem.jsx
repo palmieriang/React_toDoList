@@ -9,21 +9,22 @@ class DisplayItem extends Component {
       editing: false
     }
     this.handleDone = this.handleDone.bind(this)
-    this.handleModify = this.handleModify.bind(this)
+    this.edit = this.edit.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.onSubmit = this.onSubmit.bind(this)
 	}
 
-  handleDone(event, id) {
-    var _done = !this.props.task.done
-    this.props.doneTask(_done, id)
+  handleDone() {
+    this.props.updateTask({
+      ...this.props.task,
+      done: !this.props.task.done
+    })
   }
 
-  handleModify() {
-    var _editing = !this.state.editing
+  edit() {
     this.setState({
       value: this.props.task.title,
-      editing: _editing
+      editing: !this.state.editing
     })
   }
 
@@ -33,9 +34,12 @@ class DisplayItem extends Component {
     })
   }
 
-  handleSubmit(event, id) {
+  onSubmit(event) {
     event.preventDefault()
-    this.props.modifyTask(this.state.value, id)
+    this.props.updateTask({
+      ...this.props.task,
+      title: this.state.value
+    })
     this.setState({
       editing: false
     })
@@ -43,19 +47,20 @@ class DisplayItem extends Component {
 
   render() {
     const {task, removeTask, index} = this.props
+    const {value, editing} = this.state
 
 		return (
       <tr>
-        <td className="number"> { index + 1 } </td>
+        <td className="number">{index + 1}</td>
         <td className="number">
-          <input type="checkbox" checked={task.done} onChange={(event, id) => this.handleDone(event, task.id)} />
+          <input type="checkbox" checked={task.done} onChange={this.handleDone} />
         </td>
-        <td className={"name " + (task.done ? "done" : "")}>
-          {!this.state.editing && <span onClick={this.handleModify}> { task.title } </span>}
-          {this.state.editing && <form onSubmit={(event, id) => this.handleSubmit(event, task.id)}><input type="text" value={this.state.value} onChange={this.handleChange} /></form>}
+        <td className={`name ${task.done ? 'done' : ''}`}>
+          {!editing && <span onClick={this.edit}>{task.title}</span>}
+          {editing && <form onSubmit={this.handleSubmit}><input type="text" value={value} onChange={this.handleChange} /></form>}
         </td>
         <td className="number">
-          <span onClick={ removeTask.bind(this, task) }>X</span>
+          <span onClick={() => removeTask(task.id)}>X</span>
         </td>
       </tr>
 		)
@@ -64,8 +69,7 @@ class DisplayItem extends Component {
 
 DisplayItem.propTypes = {
   task: PropTypes.object.isRequired,
-  doneTask: PropTypes.func.isRequired,
-  modifyTask: PropTypes.func.isRequired,
+  updateTask: PropTypes.func.isRequired,
   removeTask: PropTypes.func.isRequired
 }
 
