@@ -25,10 +25,8 @@ class DisplayItem extends Component {
 
   handleModify() {
     var _editing = !this.state.editing
-    this.state = {
-      value: this.props.task.title
-    }
     this.setState({
+      value: this.props.task.title,
       editing: _editing
     })
   }
