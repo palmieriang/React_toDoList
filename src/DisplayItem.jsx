@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import rubbish from './images/rubbish.svg'
 
 class DisplayItem extends Component {
 	constructor(props) {
@@ -60,7 +61,9 @@ class DisplayItem extends Component {
           {editing && <form onSubmit={this.handleSubmit}><input type="text" value={value} onChange={this.handleChange} /></form>}
         </td>
         <td className="number">
-          <span onClick={() => removeTask(task.id)}>X</span>
+          <span onClick={() => removeTask(task.id)}>
+            <img src={rubbish} className="icon" alt="rubbish-icon" />
+          </span>
         </td>
       </tr>
 		)

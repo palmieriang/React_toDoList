@@ -17,16 +17,15 @@ class Todo extends Component {
       ]
     }
 
-    this.removeTask = this.removeTask.bind(this)
     this.addTask = this.addTask.bind(this)
     this.updateTask = this.updateTask.bind(this)
+    this.removeTask = this.removeTask.bind(this)
     this.removeAllTasks = this.removeAllTasks.bind(this)
     this.removeCompletedTasks = this.removeCompletedTasks.bind(this)
   }
 
   componentDidMount() {
     const storedTasks = localStorage.getItem('storedTasks')
-
     if (storedTasks) {
       this.setState({
         tasks: JSON.parse(storedTasks)
@@ -56,7 +55,6 @@ class Todo extends Component {
 
   removeTask(id) {
     const tasks = this.state.tasks.filter((task) =>  task.id !== id)
-
     this.setState({tasks})
     this.updateLocalStorage(tasks)
   }
