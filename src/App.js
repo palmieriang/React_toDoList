@@ -82,19 +82,12 @@ class Todo extends Component {
   }
 
   render() {
-
     return (
       <div className="container">
-        <h1 className="header">To Do List</h1>
-
-        <div className="tasks-counter">
-          <p>Number of total tasks: {this.state.tasks.length} </p>
-          <p>Number of total tasks done: {this.state.tasks.filter((elem) => elem.done).length} </p>
-        </div>
-
-        <AddNewTask addTask={this.addTask} />
+        <h1 className="header">TODO LIST</h1>
 
         <div className="buttons-row">
+          <AddNewTask addTask={this.addTask} />
           <button className="btn btn-success btn-xs" onClick={this.removeCompletedTasks}>Remove Completed</button>
           <button className="btn btn-danger btn-xs" onClick={this.removeAllTasks}>Remove All</button>
         </div>
@@ -112,12 +105,15 @@ class Todo extends Component {
               )
             )}
           </tbody>
-          <tfoot>
+        </table>
+
+        <table className="table-bordered table2">
+          <tbody>
             <tr>
-              <td colSpan="2"><p>Number of total tasks: {this.state.tasks.length} </p></td>
-              <td colSpan="2"><p>Number of total tasks done: {this.state.tasks.filter((elem) => elem.done).length} </p></td>
+              <td><p>Total tasks: {this.state.tasks.length} </p></td>
+              <td><p>Total tasks done: {this.state.tasks.filter((elem) => elem.done).length} </p></td>
             </tr>
-          </tfoot>
+          </tbody>          
         </table>
         <br />
       </div>

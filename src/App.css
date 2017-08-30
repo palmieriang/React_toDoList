@@ -15,22 +15,29 @@
 .buttons-row {
   display: flex;
   justify-content: center;
-  margin: 10px; }
+  margin: 10px;
+  align-items: center; }
   .buttons-row button {
     margin: 10px;
-    padding: 5px 10px; }
+    padding: 2px 10px; }
 
 .container {
   width: 600px;
   margin: 10px auto;
   background-color: beige;
-  border-radius: 5px; }
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px -2px black; }
 
 table {
   width: 100%; }
 
 th, td {
   padding: 10px; }
+
+.table-bordered.table2 {
+  margin-top: -1px; }
+  .table-bordered.table2 p {
+    margin: 0; }
 
 .number {
   width: 50px;
