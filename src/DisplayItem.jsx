@@ -61,9 +61,7 @@ class DisplayItem extends Component {
           {editing && <form onSubmit={this.handleSubmit}><input type="text" value={value} onChange={this.handleChange} /></form>}
         </td>
         <td className="number">
-          <span onClick={() => removeTask(task.id)}>
-            <img src={rubbish} className="icon" alt="rubbish-icon" />
-          </span>
+          <img src={rubbish} className="icon" alt="rubbish-icon" onClick={() => removeTask(task.id)} />
         </td>
       </tr>
 		)
